@@ -24,7 +24,8 @@ $SCAN_NET_SETUP = '';
 // 5 = ukrainian
 // 6 = french
 // 7 = dutch
-$lang_id = 1;
+// 8 = spanish
+$lang_id = 8;
 
 
 // set your scanner maximum page size, and a low dpi for previews
@@ -47,10 +48,10 @@ $PREVIEW_HEIGHT_PX  = $PREVIEW_HEIGHT_MM * $PREVIEW_SCALE;
 // ref: page sizes in mm (http://en.wikipedia.org/wiki/Paper_size)
 // NB. only pages within your scanner size will be included
 $PAGE_SIZE_LIST = array();
-add_page_size('A0', 841, 1189);
-add_page_size('A1', 594, 841);
-add_page_size('A2', 420, 594);
-add_page_size('A3', 297, 420);
+//add_page_size('A0', 841, 1189);
+//add_page_size('A1', 594, 841);
+//add_page_size('A2', 420, 594);
+//add_page_size('A3', 297, 420);
 add_page_size('A4', 210, 297);
 add_page_size('A5', 148, 210);
 add_page_size('A6', 105, 148);
@@ -65,9 +66,9 @@ add_page_size('A6', 105, 148);
 $DEFAULT_PAGE_SIZE = 'A4';
 
 // enable features
-$do_test_mode     = false; //fake scanner
-$do_btn_clean     = false; //for debugging
-$do_btn_reset     = false; //for debugging
+$do_test_mode     = true; //fake scanner
+$do_btn_clean     = true; //for debugging
+$do_btn_reset     = true; //for debugging
 $do_btn_help      = true;
 $do_brightness    = true;
 $do_contrast      = true;
@@ -117,8 +118,8 @@ if(php_uname('s') == 'FreeBSD') {
   $CONVERT   = "/usr/local/bin/convert";
   $IDENTIFY  = "/usr/local/bin/identify";
 }
-else if(stripos(exec('uname -a'), 'synology') !== FALSE) {
-  //Synology Disk Station
+else if(stripos(exec('uname -a'), 'armv5tel') !== FALSE) {
+  //armv5tel based NAS like QNAP
   $SCANIMAGE = "/opt/bin/scanimage";
   $GOCR      = "/opt/bin/gocr";
   $PDFUNITE  = "/usr/local/bin/pdfunite";
@@ -126,8 +127,8 @@ else if(stripos(exec('uname -a'), 'synology') !== FALSE) {
   $PNMTOTIFF = "/usr/local/netpbm/bin/pnmtotiff";
   $PNMTOBMP  = "/usr/local/netpbm/bin/ppmtobmp";
   $PNMTOPNG  = "/usr/local/netpbm/bin/pnmtopng";
-  $CONVERT   = "/opt/bin/convert";
-  $IDENTIFY  = "/opt/bin/identify";
+  $CONVERT   = "/usr/local/sbin/convert";
+  $IDENTIFY  = "/usr/local/sbin/identify";
 }
 if(!`ls $GOCR`) $do_format_txt = false; //disable OCR when not available
 if(!(`ls $CONVERT` && `ls $IDENTIFY` && `$IDENTIFY -list Format | grep -i pdf`)) $do_format_pdf = false; //disable PDF when not available

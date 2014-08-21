@@ -573,4 +573,72 @@ $lang[7] = array(
     "scannen_",            // 60
 );
 
+// DANI
+////////////////////////////////////////////////////////////////////////
+// 8 = Spanish
+
+$lang[8] = array(
+  "Area de escaneo",           // 0
+		"Izquierda",                // 1
+		"Arriba",                 // 2
+		"Ancho",               // 3
+		"Alto",              // 4
+		"mm",                  // 5
+  "ppp",                 // 6
+  "%",                   // 7
+		"Desconocido",             // 8
+		"Opciones de escaneo",        // 9
+		"Formato fichero",         // 10
+		"Preparando descarga ... espere", // 11
+  "¿Esta seguro de que quiere borrar los ficheros seleccionados? ¡Esta acción no se puede deshacer!", // 12
+  "Error descargando archivos.", // 13
+		"Modo",                // 14
+		"Color 24 bits",        // 15
+		"Escala grises",           // 16
+		"Monocromo",          // 17
+		"Resolución",          // 18
+		array("es", "es_ES", "es_ES.UTF-8", "Spanish_Spain", "Spanish"), // 19
+		"Spanish",             // 20
+		"Dispositivo de escaneo",      // 21
+		"Brillo",          // 22
+		"Contraste",            // 23
+		"Previsualizar",             // 24
+		"Reiniciar",               // 25
+		"Limpiar",               // 26
+		"Todo",                 // 27
+  "Nada",                // 28
+  "Documentos",           // 29
+  "Imágenes",              // 30
+  "Otros",               // 31
+		"ERROR",               // 32
+		"No se identificaron escaners.<br>Si esto no es lo que esperaba, compruebe que el escaner esta enchufado, encendido y es detectado por la herramienta sane-find-scanner (si aplica).<br>Por favor lea la documentación que viene con este software (README, FAQ, manpages).", // 33
+		"Pruebe otra vez",           // 34
+		"Clic derecho para guardar", // 35
+		"CERRAR",               // 36
+		"Ayuda",                // 37
+		"Extra",               // 38
+		"Sin comando para escaneo",     // 39
+		"Tamaño de página",           // 40
+		"Nombre de archivo",           // 41
+		"Aceptar",              // 42
+		"Documento PDF",        // 43
+		"Imagen JPEG",          // 44
+  "Imagen PNM",           // 45
+		"Imagen TIFF",          // 46
+  "Imagen BMP",           // 47
+  "Imagen PNG",           // 48
+  "Documento TXT",        // 49
+  "¿Escanear otra página?",  // 50
+  "Nombre archivo",            // 51
+  "Tipo",                // 52
+  "Tamaño",                // 53
+  "Fecha modificación",       // 54
+  "Archivo",                // 55
+  "Seleccione archivo",         // 56
+  "Tamaño personalizado",         // 57
+  "Descarga",            // 58
+  "Borrar",              // 59
+  "scan_",               // 60
+);
+
 ?>
