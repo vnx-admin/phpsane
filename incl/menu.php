@@ -7,6 +7,11 @@ echo "<table id='tab_menu_settings'>
 		<td id='scanner_name' colspan='3'>".$scan_output."</td>
 	</tr>
 	<tr>
+		<td id='rescan' colspan='3'>
+		    <form action=''><input type='submit' name='rescan' value='".$lang[$lang_id][61]."'/></form>
+		</td>
+	</tr>
+	<tr>
 		<th colspan='3'>".$lang[$lang_id][0]."</th>
 	</tr>
   <tr>

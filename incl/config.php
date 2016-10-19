@@ -1,6 +1,8 @@
 <?php
 // CONFIG --------------------------------------------------------------
 
+    define('SAVED_SCANNER_FILE','incl/scanner.conf');
+
 $temp_dir    = "./tmp/";                   //  temporary directory for storing preview files
 $save_dir    = "./output/";                //  destination directory for scanned files
 $scanner_dir = "./scanners/";              //  destination directory for storing and reading scanner configuration files
@@ -66,7 +68,7 @@ add_page_size('A6', 105, 148);
 $DEFAULT_PAGE_SIZE = 'A4';
 
 // enable features
-$do_test_mode     = true; //fake scanner
+$do_test_mode     = false; //fake scanner
 $do_btn_clean     = true; //for debugging
 $do_btn_reset     = true; //for debugging
 $do_btn_help      = true;
@@ -111,7 +113,7 @@ if(php_uname('s') == 'FreeBSD') {
   $SCANIMAGE = "/usr/local/bin/scanimage";
   $GOCR      = "/usr/local/bin/gocr";
   $PDFUNITE  = "/usr/local/bin/pdfunite";
-  $PNMTOJPEG = "/usr/bin/pnmtojpeg";
+  $PNMTOJPEG = "/usr/local/bin/pnmtojpeg";
   $PNMTOTIFF = "/usr/local/bin/pnmtotiff";
   $PNMTOBMP  = "/usr/local/bin/ppmtobmp";
   $PNMTOPNG  = "/usr/local/bin/pnmtopng";
@@ -177,7 +179,7 @@ $mode = "Color";  // Lineart|Gray|Color
 $resolution = 300;
 $brightness = -1;
 $contrast = -1;
-$usr_opt = " --jpeg-quality 0";
+$usr_opt = " --format pnm";
 $pos_x = 0;
 $pos_y = 0;
 $geometry_x = 0;
@@ -229,13 +231,20 @@ $usr_opt = $my_usr_opt;
 
 // scanner device detect
 $scanner_ok = false;
-if ($do_test_mode) {
-	$sane_result = "device `plustek:libusb:004:002' is a Plustek OpticPro U24 flatbed scanner";
-} else {
-	$sane_cmd = $SCAN_NET_SETUP . $SCANIMAGE . " --list-devices | grep 'device' | grep -e '\(scanner\|hpaio\|multi-function\)'";
-	$sane_result = exec($sane_cmd);
-	$sane_result;
-	unset($sane_cmd);
+$savedScanner = file_exists(SAVED_SCANNER_FILE) ? file_get_contents(SAVED_SCANNER_FILE) : false;
+switch (true) {
+    case ($do_test_mode):
+        $sane_result = "device `plustek:libusb:004:002' is a Test scanner";
+        break;
+    case (isset($_POST['rescan'])):
+    case ($savedScanner === false):
+        $sane_cmd = $SCAN_NET_SETUP . $SCANIMAGE . " --list-devices | grep 'device' | grep -e '\(scanner\|hpaio\|multi-function\)'";
+        $sane_result = exec($sane_cmd);
+        unset($sane_cmd);
+        break;
+    default:
+        $sane_result = $savedScanner;
+        break;
 }
 
 // get scanner name
@@ -246,6 +255,7 @@ unset($start);
 unset($length);
 if ((strlen($scanner) > 2) || $do_test_mode) {
 	$scanner_ok = true;
+    file_put_contents(SAVED_SCANNER_FILE, $sane_result);
 }
 $start = strpos($sane_result, "is a ") + 5;
 $length = strlen($sane_result) - $start;
