@@ -80,24 +80,24 @@
   }
 
   $cmd_brightness="";
-  if ($do_brightness && (strtolower($mode) != 'lineart')) {
-    if (($brightness >= $contrast_minimum) && ($brightness <= $contrast_maximum)) {
-      $cmd_brightness=" --brightness ".$brightness;
-    } else {
-      $lang[$lang_id][22]="<span class=\"input_error\">".$lang[$lang_id][22]."</span>";
-      scan_error($scan_output, $error_input, $lang_error);
-    }
-  }
+//  if ($do_brightness && (strtolower($mode) != 'lineart')) {
+//    if (($brightness >= $contrast_minimum) && ($brightness <= $contrast_maximum)) {
+//      $cmd_brightness=" --brightness ".$brightness;
+//    } else {
+//      $lang[$lang_id][22]="<span class=\"input_error\">".$lang[$lang_id][22]."</span>";
+//      scan_error($scan_output, $error_input, $lang_error);
+//    }
+//  }
 
   $cmd_contrast="";
-  if ($do_contrast) {
-    if (($contrast >= $contrast_minimum) && ($contrast <= $contrast_maximum)) {
-      $cmd_contrast=" --contrast ".$contrast;
-    } else {
-      $lang[$lang_id][23]="<span class=\"input_error\">".$lang[$lang_id][23]."</span>";
-      scan_error($scan_output, $error_input, $lang_error);
-    }
-  }
+//  if ($do_contrast) {
+//    if (($contrast >= $contrast_minimum) && ($contrast <= $contrast_maximum)) {
+//      $cmd_contrast=" --contrast ".$contrast;
+//    } else {
+//      $lang[$lang_id][23]="<span class=\"input_error\">".$lang[$lang_id][23]."</span>";
+//      scan_error($scan_output, $error_input, $lang_error);
+//    }
+//  }
   
   $cmd_usr_opt=" " . $usr_opt;
 
